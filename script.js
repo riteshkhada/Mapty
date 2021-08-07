@@ -1,19 +1,5 @@
 "use strict";
 
-const months = [
-  "jan",
-  "feb",
-  "mar",
-  "apr",
-  "may",
-  "jun",
-  "jul",
-  "aug",
-  "sep",
-  "oct",
-  "nov",
-  "dec",
-];
 const workouts = document.querySelector(".workouts");
 const form = document.querySelector("form");
 const type = document.querySelector(".form__input--type");
