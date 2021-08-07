@@ -45,7 +45,4 @@ if (navigator.geolocation)
         .openPopup();
     },
 
-    function () {
-      alert(`You could not get accessed!`);
-    }
-  );
+ 
