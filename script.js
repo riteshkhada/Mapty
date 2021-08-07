@@ -40,16 +40,15 @@ if (navigator.geolocation)
       }).addTo(map);
 
       map.on("click", function (mapEvent) {
-        console.log(mapEvent);
-
         const { lat, lng } = mapEvent.latlng;
-        L.marker(coords)
+
+        L.marker([lat, lng])
           .addTo(map)
           .bindPopup(
-            l.popup({
-              maxwidth: 300,
-              minwidth: 200,
-              autoclose: false,
+            L.popup({
+              maxWidth: 300,
+              minWidth: 200,
+              autClose: false,
               closeOnClick: false,
               className: "running-popup",
             })
