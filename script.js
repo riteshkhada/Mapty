@@ -14,13 +14,6 @@ const months = [
   "nov",
   "dec",
 ];
-const workouts = document.querySelector(".workouts");
-const form = document.querySelector("form");
-const type = document.querySelector(".form__input--type");
-const distance = document.querySelector(".form__input--distance");
-const duration = document.querySelector(".form__input--duration");
-const cadence = document.querySelector(".form__input--cadence");
-const elevation = document.querySelector(".form__input--elevation");
 
 if (navigator.geolocation)
   navigator.geolocation.getCurrentPosition(
