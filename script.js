@@ -25,7 +25,10 @@ const elevation = document.querySelector(".form__input--elevation");
 let map, mapEvent;
 
 class App {
-  constructor() {}
+  constructor() {
+    this._getPosition();
+  }
+
   _getPosition() {
     //to get geolocation
     if (navigator.geolocation)
@@ -59,9 +62,15 @@ class App {
       distance.focus();
     });
   }
+
+  _showForm() {}
+
+  _toggleElevationField() {}
+
+  _newWorkout() {}
 }
-const app = new app();
-app._getPosition;
+let app = App();
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   const { lat, lng } = mapEvent.latlng;
