@@ -60,6 +60,7 @@ const inputElevation = document.querySelector(".form__input--elevation");
 class App {
   #map;
   #mapEvent;
+  #workouts = [];
   constructor() {
     this._getPosition();
 
@@ -150,7 +151,7 @@ class App {
     }
 
     //add new object to workout array
-
+    this.#workouts.push(workout);
     //render workout on map marker
 
     L.marker([lat, lng])
