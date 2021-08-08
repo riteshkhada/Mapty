@@ -22,7 +22,23 @@ const duration = document.querySelector(".form__input--duration");
 const cadence = document.querySelector(".form__input--cadence");
 const elevation = document.querySelector(".form__input--elevation");
 
-let map, mapEvent;
+class workout {
+  date = new Date();
+  id = (new Date() + "").slice(-10);
+
+  constructor(coords, distance, duration) {
+    this.coords = coords;
+    this.distance = distance;
+    this.duration;
+  }
+}
+class running extends workout {
+     constructor (coords, distance, duration, cadence)
+}
+class cycling extends workout {
+     constructor ()
+}
+
 class App {
   #map;
   #mapEvent;
