@@ -169,14 +169,3 @@ class App {
       .setPopupContent("Workouts")
       .openPopup();
     //render workout on list
-
-    //hide + clear input field
-    inputDistance.value =
-      inputDuration.value =
-      inputCadence.value =
-      inputElevation.value =
-        "";
-    //display marker
-  }
-}
-const app = new App();
