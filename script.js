@@ -31,10 +31,7 @@ class App {
 
     form.addEventListener("submit", this._newWorkout.bind(this));
 
-    type.addEventListener("change", function () {
-      elevation.closest(".form__row").classList.toggle("form__row--hidden");
-      cadence.closest(".form__row").classList.toggle("form__row--hidden");
-    });
+    type.addEventListener("change", this._toggleElevationField);
   }
 
   _getPosition() {
@@ -73,11 +70,14 @@ class App {
     distance.focus();
   }
 
-  _toggleElevationField() {}
+  _toggleElevationField() {
+    elevation.closest(".form__row").classList.toggle("form__row--hidden");
+    cadence.closest(".form__row").classList.toggle("form__row--hidden");
+  }
 
-  _newWorkout() {
+  _newWorkout(e) {
     e.preventDefault();
-    const { lat, lng } = mapEvent.latlng;
+    const { lat, lng } = this.#mapEvent.latlng;
 
     distance.value = duration.value = cadence.value = elevation.value = "";
     //display marker
