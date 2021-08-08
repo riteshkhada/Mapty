@@ -23,8 +23,9 @@ const cadence = document.querySelector(".form__input--cadence");
 const elevation = document.querySelector(".form__input--elevation");
 
 let map, mapEvent;
-
 class App {
+  #map;
+  #mapEvent;
   constructor() {
     this._getPosition();
   }
@@ -33,7 +34,7 @@ class App {
     //to get geolocation
     if (navigator.geolocation)
       navigator.geolocation.getCurrentPosition(
-        this._loadMap,
+        this._loadMap.bind(this),
         //if you don"t access;
         function () {
           alert(`You could not get accessed!`);
@@ -49,15 +50,15 @@ class App {
 
     const coords = [latitude, longitude];
     //leaflet
-    map = L.map("map").setView(coords, 7);
+    this.#map = L.map("map").setView(coords, 7);
     console.log(map);
     L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+    }).addTo(this.#map);
     //to click anywhere on map,
-    map.on("click", function (mapE) {
-      mapEvent = mapE;
+    this.#map.on("click", function (mapE) {
+      this.#mapEvent = mapE;
       form.classList.remove("hidden");
       distance.focus();
     });
@@ -69,7 +70,7 @@ class App {
 
   _newWorkout() {}
 }
-let app = App();
+const app = new App();
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -92,6 +93,7 @@ form.addEventListener("submit", function (e) {
     .setPopupContent("workout")
     .openPopup();
 });
+
 type.addEventListener("change", function () {
   elevation.closest(".form__row").classList.toggle("form__row--hidden");
   cadence.closest(".form__row").classList.toggle("form__row--hidden");
