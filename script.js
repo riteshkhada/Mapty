@@ -24,7 +24,7 @@ const elevation = document.querySelector(".form__input--elevation");
 
 class Workout {
   date = new Date();
-  id = (new Date() + "").slice(-10);
+  id = (Date.now() + "").slice(-10);
 
   constructor(coords, distance, duration) {
     this.coords = coords;
@@ -40,7 +40,6 @@ class Rrunning extends Workout {
   }
   calcPace() {
     this.pace = this.duration / this.distance;
-    return pace;
   }
 }
 class Cycling extends Workout {
@@ -52,9 +51,11 @@ class Cycling extends Workout {
 
   calcSpeed() {
     this.speed = this.distance / (this.duration / 60);
-    return this.speed;
   }
 }
+const run1 = new Rrunning([25, -77], 25, 30, 75);
+const run2 = new Cycling([30, -45], 50, 35, 70);
+console.log(run1, run2);
 
 class App {
   #map;
