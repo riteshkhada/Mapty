@@ -29,17 +29,31 @@ class Workout {
   constructor(coords, distance, duration) {
     this.coords = coords;
     this.distance = distance;
-    this.duration= duration;
+    this.duration = duration;
   }
 }
 class Rrunning extends Workout {
-     constructor (coords, distance, duration, cadence){
-     super (coords, distance, duration,)
-     this.cadence = cadence;
-}
+  constructor(coords, distance, duration, cadence) {
+    super(coords, distance, duration);
+    this.cadence = cadence;
+    this.calcPace();
+  }
+  calcPace() {
+    this.pace = this.duration / this.distance;
+    return pace;
+  }
 }
 class Cycling extends Workout {
-     constructor ()
+  constructor(coords, distance, duration, elevation) {
+    super(coords, distance, duration);
+    this.elevation = elevation;
+    this.calcSpeed();
+  }
+
+  calcSpeed() {
+    this.speed = this.distance / (this.duration / 60);
+    return this.speed;
+  }
 }
 
 class App {
