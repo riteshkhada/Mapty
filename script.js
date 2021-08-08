@@ -22,20 +22,23 @@ const duration = document.querySelector(".form__input--duration");
 const cadence = document.querySelector(".form__input--cadence");
 const elevation = document.querySelector(".form__input--elevation");
 
-class workout {
+class Workout {
   date = new Date();
   id = (new Date() + "").slice(-10);
 
   constructor(coords, distance, duration) {
     this.coords = coords;
     this.distance = distance;
-    this.duration;
+    this.duration= duration;
   }
 }
-class running extends workout {
-     constructor (coords, distance, duration, cadence)
+class Rrunning extends Workout {
+     constructor (coords, distance, duration, cadence){
+     super (coords, distance, duration,)
+     this.cadence = cadence;
 }
-class cycling extends workout {
+}
+class Cycling extends Workout {
      constructor ()
 }
 
