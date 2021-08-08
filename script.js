@@ -28,6 +28,13 @@ class App {
   #mapEvent;
   constructor() {
     this._getPosition();
+
+    form.addEventListener("submit", this._newWorkout.bind(this));
+
+    type.addEventListener("change", function () {
+      elevation.closest(".form__row").classList.toggle("form__row--hidden");
+      cadence.closest(".form__row").classList.toggle("form__row--hidden");
+    });
   }
 
   _getPosition() {
@@ -57,44 +64,37 @@ class App {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map);
     //to click anywhere on map,
-    this.#map.on("click", function (mapE) {
-      this.#mapEvent = mapE;
-      form.classList.remove("hidden");
-      distance.focus();
-    });
+    this.#map.on("click", this._showForm.bind(this));
   }
 
-  _showForm() {}
+  _showForm(mapE) {
+    this.#mapEvent = mapE;
+    form.classList.remove("hidden");
+    distance.focus();
+  }
 
   _toggleElevationField() {}
 
-  _newWorkout() {}
+  _newWorkout() {
+    e.preventDefault();
+    const { lat, lng } = mapEvent.latlng;
+
+    distance.value = duration.value = cadence.value = elevation.value = "";
+    //display marker
+    L.marker([lat, lng])
+      .addTo(this.#map)
+      .bindPopup(
+        L.popup({
+          maxWidth: 300,
+          minWidth: 200,
+          autClose: false,
+          closeOnClick: false,
+          className: "running-popup",
+        })
+      )
+      //open and render workout popup;
+      .setPopupContent("workout")
+      .openPopup();
+  }
 }
 const app = new App();
-
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  const { lat, lng } = mapEvent.latlng;
-
-  distance.value = duration.value = cadence.value = elevation.value = "";
-  //display marker
-  L.marker([lat, lng])
-    .addTo(map)
-    .bindPopup(
-      L.popup({
-        maxWidth: 300,
-        minWidth: 200,
-        autClose: false,
-        closeOnClick: false,
-        className: "running-popup",
-      })
-    )
-    //open and render workout popup;
-    .setPopupContent("workout")
-    .openPopup();
-});
-
-type.addEventListener("change", function () {
-  elevation.closest(".form__row").classList.toggle("form__row--hidden");
-  cadence.closest(".form__row").classList.toggle("form__row--hidden");
-});
