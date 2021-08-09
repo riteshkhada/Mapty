@@ -123,7 +123,7 @@ class App {
         "";
     form.style.display = "none";
     form.classList.add("hidden");
-    setTimeout(() => (form.style.display = "grid"), 1000);
+     setTimeout(() => (form.style.display = "grid"), 1000);
   }
 
   _toggleElevationField() {
@@ -178,9 +178,9 @@ class App {
     this._renderWorkoutMarker(workout);
 
     //render workout on list
-    this._renderWorkout(workout);
+   // this._renderWorkout(workout);
     //hide + clear input field
-    //  this._hideForm();
+      this._hideForm();
     //display marker
   }
 
