@@ -24,9 +24,9 @@ class Workout {
       "nov",
       "dec",
     ];
-    this.description = `${this.type[0].toUpperCase}${this.type.slice(1)}on ${
-      months[this.date.getMonth]
-    }${this.date.getDate}`;
+    this.description = `${this.type[0].toUpperCase ()}${this.type.slice(1)}on ${
+      months[this.date.getMonth ()]
+    }${this.date.getDate ()}`;
   }
 }
 class Running extends Workout {
@@ -44,9 +44,9 @@ class Running extends Workout {
 class Cycling extends Workout {
   type = "cycling";
 
-  constructor(coords, distance, duration, elevation) {
+  constructor(coords, distance, duration, elevationGain) {
     super(coords, distance, duration);
-    this.elevation = elevation;
+    this.elevationGain = elevationGain;
     this.type = "cycling";
     this.calcSpeed();
     this._setDescription();
@@ -59,7 +59,7 @@ class Cycling extends Workout {
 
 //application architecture
 
-const workouts = document.querySelector(".workouts");
+const containerWorkouts = document.querySelector(".workouts");
 const form = document.querySelector(".form");
 const inputType = document.querySelector(".form__input--type");
 const inputDistance = document.querySelector(".form__input--distance");
@@ -77,6 +77,8 @@ class App {
     form.addEventListener("submit", this._newWorkout.bind(this));
 
     inputType.addEventListener("change", this._toggleElevationField);
+
+    // containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
   }
 
   _getPosition() {
@@ -107,6 +109,10 @@ class App {
     }).addTo(this.#map);
     //to click anywhere on map,
     this.#map.on("click", this._showForm.bind(this));
+
+    this.#workouts.forEach(work => {
+     this._renderWorkoutMarker(work);
+   });
   }
 
   _showForm(mapE) {
@@ -121,10 +127,8 @@ class App {
       inputCadence.value =
       inputElevation.value =
         "";
+        form.style.display = "none";
         form.classList.add("hidden");
-    
-    
-
      setTimeout(() => (form.style.display = "grid"), 1000);
   }
 
@@ -175,12 +179,12 @@ class App {
 
     //add new object to workout array
     this.#workouts.push(workout);
-    console.log(workout);
+    
     //render workout on map marker
     this._renderWorkoutMarker(workout);
 
     //render workout on list
-    this._renderWorkout;
+    this._renderWorkOut(workout);
     //hide + clear input field
       this._hideForm();
     //display marker
@@ -199,7 +203,7 @@ class App {
         })
       )
       //open and render workout popup;
-      .setPopupContent("Workouts")
+      .setPopupContent(`${workout.type === 'running' ? '🏃‍♂️' : '🚴‍♀️'} ${workout.description}`)
       .openPopup();
   }
   _renderWorkOut(workout) {
@@ -242,7 +246,7 @@ class App {
                </div>
                <div class="workout__details">
                  <span class="workout__icon">⛰</span>
-                 <span class="workout__value">${workout.elevation}</span>
+                 <span class="workout__value">${workout.elevationGain}</span>
                  <span class="workout__unit">m</span>
                </div>
              </li>
