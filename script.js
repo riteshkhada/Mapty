@@ -60,7 +60,7 @@ class Cycling extends Workout {
 //application architecture
 
 const workouts = document.querySelector(".workouts");
-const form = document.querySelector("form");
+const form = document.querySelector(".form");
 const inputType = document.querySelector(".form__input--type");
 const inputDistance = document.querySelector(".form__input--distance");
 const inputDuration = document.querySelector(".form__input--duration");
@@ -178,7 +178,7 @@ class App {
     this._renderWorkoutMarker(workout);
 
     //render workout on list
-   // this._renderWorkout(workout);
+    this._renderWorkout(workout);
     //hide + clear input field
       this._hideForm();
     //display marker
