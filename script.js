@@ -121,8 +121,10 @@ class App {
       inputCadence.value =
       inputElevation.value =
         "";
-    form.style.display = "none";
-    form.classList.add("hidden");
+        form.classList.add("hidden");
+    
+    
+
      setTimeout(() => (form.style.display = "grid"), 1000);
   }
 
@@ -178,7 +180,7 @@ class App {
     this._renderWorkoutMarker(workout);
 
     //render workout on list
-    this._renderWorkout(workout);
+    this._renderWorkout;
     //hide + clear input field
       this._hideForm();
     //display marker
