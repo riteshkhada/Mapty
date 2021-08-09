@@ -11,22 +11,22 @@ class Workout {
   }
   _setDescription() {
     const months = [
-      "jan",
-      "feb",
-      "mar",
-      "apr",
-      "may",
-      "jun",
-      "jul",
-      "aug",
-      "sep",
-      "oct",
-      "nov",
-      "dec",
+      "January",
+      "Febuary",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
     ];
-    this.description = `${this.type[0].toUpperCase ()}${this.type.slice(1)}on ${
-      months[this.date.getMonth ()]
-    }${this.date.getDate ()}`;
+    this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
+     months[this.date.getMonth()]
+   } ${this.date.getDate()}`;
   }
 }
 class Running extends Workout {
@@ -216,7 +216,7 @@ class App {
        <h2 class="workout__title">${workout.description}</h2>
        <div class="workout__details">
          <span class="workout__icon">${
-           workout.type === Running ? "🏃‍♂️" : "🚴‍♀️"
+           workout.type === "running" ? "🏃‍♂️" : "🚴‍♀️"
          }</span>
          <span class="workout__value">${workout.distance}</span>
          <span class="workout__unit">km</span>
@@ -226,7 +226,7 @@ class App {
          <span class="workout__value">${workout.duration}</span>
          <span class="workout__unit">min</span>
        </div>`;
-    if (workout.type === "running") {
+    if (workout.type === "running") 
       html += `
             <div class="workout__details">
             <span class="workout__icon">⚡️</span>
@@ -241,7 +241,7 @@ class App {
           </li>
             `;
 
-      if (workout.type === "cycling") {
+      if (workout.type === "cycling") 
         html += `
                <div class="workout__details">
                  <span class="workout__icon">⚡️</span>
@@ -255,9 +255,9 @@ class App {
                </div>
              </li>
                  `;
-        form.insertAdjacentHTML("afterend", html);
+        form.insertAdjacentHTML('afterend', html);
       }
     }
-  }
-}
+  
+
 const app = new App();
