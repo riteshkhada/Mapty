@@ -127,9 +127,11 @@ class App {
       inputCadence.value =
       inputElevation.value =
         "";
-        form.style.display = "none";
-        form.classList.add("hidden");
-     setTimeout(() => (form.style.display = "grid"), 1000);
+     
+        form.style.display = 'none';
+        form.classList.add('hidden');
+        setTimeout(() => (form.style.display = 'grid'), 1000);
+    
   }
 
   _toggleElevationField() {
@@ -184,7 +186,7 @@ class App {
     this._renderWorkoutMarker(workout);
 
     //render workout on list
-    this._renderWorkOut(workout);
+    this._renderWorkout(workout);
     //hide + clear input field
       this._hideForm();
     //display marker
@@ -203,10 +205,12 @@ class App {
         })
       )
       //open and render workout popup;
-      .setPopupContent(`${workout.type === 'running' ? '🏃‍♂️' : '🚴‍♀️'} ${workout.description}`)
+      .setPopupContent(
+           `${workout.type === 'running' ? '🏃‍♂️' : '🚴‍♀️'} ${workout.description}`
+           )
       .openPopup();
   }
-  _renderWorkOut(workout) {
+  _renderWorkout(workout) {
     let html = `
        <li class="workout workout--${workout.type}" data-id="${workout.id}">
        <h2 class="workout__title">${workout.description}</h2>
@@ -251,7 +255,7 @@ class App {
                </div>
              </li>
                  `;
-        form.insertAdjacentElement("afterend", html);
+        form.insertAdjacentHTML("afterend", html);
       }
     }
   }
